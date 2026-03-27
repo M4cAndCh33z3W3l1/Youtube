@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ViewTube</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <div class="topnav__left">
+      <button class="icon-btn" id="sidebarToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="#" class="logo">
+        <span class="logo__icon"><i class="fab fa-youtube"></i></span>
+        <span class="logo__text">ViewTube</span>
+      </a>
+    </div>
+
+    <div class="topnav__center">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search videos, channels, shorts…" autocomplete="off"/>
+        <button class="search-btn" id="searchBtn" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <button class="icon-btn mic-btn" aria-label="Voice search">
+        <i class="fas fa-microphone"></i>
+      </button>
+    </div>
+
+    <div class="topnav__right">
+      <button class="icon-btn" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </button>
+      <button class="icon-btn" aria-label="Upload">
+        <i class="fas fa-video"></i>
+      </button>
+      <div class="avatar" title="My Channel">VT</div>
+    </div>
+  </header>
+
+  <!-- LAYOUT WRAPPER -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar__nav">
+        <a href="#" class="nav-item active" data-tab="home">
+          <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="shorts">
+          <i class="fas fa-bolt"></i><span>Shorts</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="subscriptions">
+          <i class="fas fa-play-circle"></i><span>Subscriptions</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="channels">
+          <i class="fas fa-users"></i><span>Channels</span>
+        </a>
+        <div class="sidebar__divider"></div>
+        <a href="#" class="nav-item" data-tab="trending">
+          <i class="fas fa-fire"></i><span>Trending</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="music">
+          <i class="fas fa-music"></i><span>Music</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="gaming">
+          <i class="fas fa-gamepad"></i><span>Gaming</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="news">
+          <i class="fas fa-newspaper"></i><span>News</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="sports">
+          <i class="fas fa-futbol"></i><span>Sports</span>
+        </a>
+        <div class="sidebar__divider"></div>
+        <a href="#" class="nav-item">
+          <i class="fas fa-history"></i><span>History</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-bookmark"></i><span>Watch Later</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-thumbs-up"></i><span>Liked Videos</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" id="mainContent">
+
+      <!-- CHIP FILTERS -->
+      <div class="chips" id="chipsBar">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="music">Music</button>
+        <button class="chip" data-filter="gaming">Gaming</button>
+        <button class="chip" data-filter="tech">Technology</button>
+        <button class="chip" data-filter="sports">Sports</button>
+        <button class="chip" data-filter="news">News</button>
+        <button class="chip" data-filter="comedy">Comedy</button>
+        <button class="chip" data-filter="education">Education</button>
+        <button class="chip" data-filter="travel">Travel</button>
+        <button class="chip" data-filter="food">Food</button>
+      </div>
+
+      <!-- SECTIONS rendered by JS -->
+      <div id="sections"></div>
+
+    </main>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal__close" id="modalClose"><i class="fas fa-times"></i></button>
+      <div class="modal__player" id="modalPlayer"></div>
+      <div class="modal__info">
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <div class="modal__meta" id="modalMeta"></div>
+        <div class="modal__channel" id="modalChannel"></div>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__actions">
+          <button class="action-btn" id="likeBtn"><i class="fas fa-thumbs-up"></i> <span id="likeCount">0</span></button>
+          <button class="action-btn"><i class="fas fa-thumbs-down"></i></button>
+          <button class="action-btn"><i class="fas fa-share"></i> Share</button>
+          <button class="action-btn"><i class="fas fa-bookmark"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,140 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ViewTube</title>
+  <title>Mac Chat</title>
   <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-  <!-- TOP NAV -->
-  <header class="topnav">
-    <div class="topnav__left">
-      <button class="icon-btn" id="sidebarToggle" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <a href="#" class="logo">
-        <span class="logo__icon"><i class="fab fa-youtube"></i></span>
-        <span class="logo__text">ViewTube</span>
-      </a>
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a href="#" class="brand" id="brandLink">
+      <span class="brand__icon"><i class="fas fa-tv"></i></span>
+      <span class="brand__name">Mac Chat</span>
+    </a>
+
+    <div class="search-wrap" id="searchWrap">
+      <i class="fas fa-search search-icon"></i>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search videos — or paste a YouTube URL to add it"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="clearBtn" class="clear-btn" title="Clear" style="display:none"><i class="fas fa-times"></i></button>
+      <button id="searchBtn" class="search-go"><i class="fas fa-arrow-right"></i></button>
     </div>
 
-    <div class="topnav__center">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search videos, channels, shorts…" autocomplete="off"/>
-        <button class="search-btn" id="searchBtn" aria-label="Search">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-      <button class="icon-btn mic-btn" aria-label="Voice search">
-        <i class="fas fa-microphone"></i>
-      </button>
-    </div>
-
-    <div class="topnav__right">
-      <button class="icon-btn" aria-label="Notifications">
-        <i class="fas fa-bell"></i>
-        <span class="badge">3</span>
-      </button>
-      <button class="icon-btn" aria-label="Upload">
-        <i class="fas fa-video"></i>
-      </button>
-      <div class="avatar" title="My Channel">VT</div>
+    <div class="topbar__right">
+      <button class="pill-btn" id="addBtn"><i class="fas fa-plus"></i> Add Video</button>
     </div>
   </header>
 
-  <!-- LAYOUT WRAPPER -->
-  <div class="layout">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <nav class="sidebar__nav">
-        <a href="#" class="nav-item active" data-tab="home">
-          <i class="fas fa-home"></i><span>Home</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="shorts">
-          <i class="fas fa-bolt"></i><span>Shorts</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="subscriptions">
-          <i class="fas fa-play-circle"></i><span>Subscriptions</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="channels">
-          <i class="fas fa-users"></i><span>Channels</span>
-        </a>
-        <div class="sidebar__divider"></div>
-        <a href="#" class="nav-item" data-tab="trending">
-          <i class="fas fa-fire"></i><span>Trending</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="music">
-          <i class="fas fa-music"></i><span>Music</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="gaming">
-          <i class="fas fa-gamepad"></i><span>Gaming</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="news">
-          <i class="fas fa-newspaper"></i><span>News</span>
-        </a>
-        <a href="#" class="nav-item" data-tab="sports">
-          <i class="fas fa-futbol"></i><span>Sports</span>
-        </a>
-        <div class="sidebar__divider"></div>
-        <a href="#" class="nav-item">
-          <i class="fas fa-history"></i><span>History</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-bookmark"></i><span>Watch Later</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-thumbs-up"></i><span>Liked Videos</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="main" id="mainContent">
-
-      <!-- CHIP FILTERS -->
-      <div class="chips" id="chipsBar">
-        <button class="chip active" data-filter="all">All</button>
-        <button class="chip" data-filter="music">Music</button>
-        <button class="chip" data-filter="gaming">Gaming</button>
-        <button class="chip" data-filter="tech">Technology</button>
-        <button class="chip" data-filter="sports">Sports</button>
-        <button class="chip" data-filter="news">News</button>
-        <button class="chip" data-filter="comedy">Comedy</button>
-        <button class="chip" data-filter="education">Education</button>
-        <button class="chip" data-filter="travel">Travel</button>
-        <button class="chip" data-filter="food">Food</button>
-      </div>
-
-      <!-- SECTIONS rendered by JS -->
-      <div id="sections"></div>
-
-    </main>
+  <!-- CHIPS -->
+  <div class="chips-bar" id="chipsBar">
+    <div class="chips">
+      <button class="chip active" data-cat="all">All</button>
+      <button class="chip" data-cat="music">Music</button>
+      <button class="chip" data-cat="gaming">Gaming</button>
+      <button class="chip" data-cat="tech">Tech</button>
+      <button class="chip" data-cat="comedy">Comedy</button>
+      <button class="chip" data-cat="education">Education</button>
+      <button class="chip" data-cat="sports">Sports</button>
+      <button class="chip" data-cat="news">News</button>
+      <button class="chip" data-cat="shorts">Shorts</button>
+      <button class="chip" data-cat="vlog">Vlog</button>
+    </div>
   </div>
 
-  <!-- VIDEO MODAL -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modal">
-      <button class="modal__close" id="modalClose"><i class="fas fa-times"></i></button>
-      <div class="modal__player" id="modalPlayer"></div>
-      <div class="modal__info">
-        <h2 class="modal__title" id="modalTitle"></h2>
-        <div class="modal__meta" id="modalMeta"></div>
-        <div class="modal__channel" id="modalChannel"></div>
-        <p class="modal__desc" id="modalDesc"></p>
-        <div class="modal__actions">
-          <button class="action-btn" id="likeBtn"><i class="fas fa-thumbs-up"></i> <span id="likeCount">0</span></button>
-          <button class="action-btn"><i class="fas fa-thumbs-down"></i></button>
-          <button class="action-btn"><i class="fas fa-share"></i> Share</button>
-          <button class="action-btn"><i class="fas fa-bookmark"></i> Save</button>
+  <!-- MAIN -->
+  <main class="main">
+    <div id="gridWrap">
+      <div class="video-grid" id="videoGrid"></div>
+      <button class="load-more-btn" id="loadMoreBtn" style="display:none">Show more</button>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none">
+      <p class="search-label" id="searchLabel"></p>
+      <div class="video-grid" id="searchGrid"></div>
+    </div>
+  </main>
+
+  <!-- PLAYER MODAL -->
+  <div class="overlay" id="playerOverlay">
+    <div class="player-modal">
+      <button class="modal-close" id="closePlayer"><i class="fas fa-times"></i></button>
+      <div class="player-frame-wrap">
+        <iframe id="playerIframe" src="" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="player-info">
+        <h2 id="playerTitle" class="player-title">—</h2>
+        <p id="playerChannel" class="player-channel"></p>
+        <div class="player-actions">
+          <a id="ytLink" href="#" target="_blank" rel="noopener" class="player-action-btn">
+            <i class="fab fa-youtube"></i> Open on YouTube
+          </a>
+          <button class="player-action-btn" id="copyLinkBtn"><i class="fas fa-link"></i> Copy link</button>
+          <button class="player-action-btn" id="removeBtn"><i class="fas fa-trash"></i> Remove</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ADD MODAL -->
+  <div class="overlay" id="addOverlay">
+    <div class="add-modal">
+      <button class="modal-close" id="closeAdd"><i class="fas fa-times"></i></button>
+      <h3 class="add-modal__title"><i class="fab fa-youtube"></i> Add a YouTube Video</h3>
+      <p class="add-modal__hint">Paste any YouTube link — regular videos, Shorts, or live streams.</p>
+      <input type="text" id="addUrlInput" class="add-modal__input" placeholder="https://www.youtube.com/watch?v=…"/>
+      <div class="add-modal__section-label">Category <span style="color:var(--muted)">(optional)</span></div>
+      <div class="chips" id="addCatChips" style="flex-wrap:wrap;gap:6px">
+        <button class="chip active" data-addcat="all">All</button>
+        <button class="chip" data-addcat="music">Music</button>
+        <button class="chip" data-addcat="gaming">Gaming</button>
+        <button class="chip" data-addcat="tech">Tech</button>
+        <button class="chip" data-addcat="comedy">Comedy</button>
+        <button class="chip" data-addcat="education">Education</button>
+        <button class="chip" data-addcat="sports">Sports</button>
+        <button class="chip" data-addcat="news">News</button>
+        <button class="chip" data-addcat="shorts">Shorts</button>
+        <button class="chip" data-addcat="vlog">Vlog</button>
+      </div>
+      <button class="add-modal__submit" id="addSubmitBtn"><i class="fas fa-plus"></i> Add to Mac Chat</button>
+      <div class="add-modal__status" id="addStatus"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
   <script src="main.js"></script>
 </body>
